@@ -1,0 +1,27 @@
+﻿@model PhotoStorage.Models.Gallery
+
+@{
+    ViewBag.Title = "Details";
+}
+<h2>@Html.DisplayFor(model => model.GalleryName)</h2>
+
+@Html.ActionLink("Upload Image", "Create", "Photo", new { id = Model.Id },null)
+<hr/>
+@{
+    if (Model.Photos != null)
+    {
+        foreach (var photo in Model.Photos)
+        {
+            <img src="@photo.FilePath" runat="server" /><br/>
+            @photo.Title<br/>
+            @photo.FilePath<br />
+           
+        }
+    }
+}
+
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.GalleryId }) |*@
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+    @Html.ActionLink("Back to List", "Index")
+</p>

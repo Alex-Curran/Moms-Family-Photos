@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStorage", "PhotoStorage\PhotoStorage.csproj", "{FDAC7997-1071-4098-B534-DEDFE73E1000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStorage.Tests", "PhotoStorage.Tests\PhotoStorage.Tests.csproj", "{C10BF9F5-0805-4B10-A8C6-6B2D25B133CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDAC7997-1071-4098-B534-DEDFE73E1000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDAC7997-1071-4098-B534-DEDFE73E1000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDAC7997-1071-4098-B534-DEDFE73E1000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDAC7997-1071-4098-B534-DEDFE73E1000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10BF9F5-0805-4B10-A8C6-6B2D25B133CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10BF9F5-0805-4B10-A8C6-6B2D25B133CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10BF9F5-0805-4B10-A8C6-6B2D25B133CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10BF9F5-0805-4B10-A8C6-6B2D25B133CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

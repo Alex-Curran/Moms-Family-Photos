@@ -1,0 +1,30 @@
+﻿@model PhotoStorage.ViewModels.PhotoViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Upload Image</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.EditorFor(m => m.Name)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Description)
+        @Html.EditorFor(m => m.Description)
+    </div>
+
+    <div>
+        @Html.TextBoxFor(m => m.PhotoUpload, new {type = "file"})
+    </div>
+    <div>
+        @Html.HiddenFor(m=>m.GalleryId)
+    </div>
+    <button type="submit">Upload</button>
+</form>
