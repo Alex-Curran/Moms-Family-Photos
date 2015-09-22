@@ -1,0 +1,67 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.navbar-color {
+    background-color:#fff000;
+}
+
+.navbar-nav > li > a{
+        color: #800080; 
+}
+
+.navbar-brand{
+    color:#800080;
+}
+
+.well-lg{
+    background-color:#800080;
+    height: 100vh;
+}
+
+a {
+    color: #ffffff;
+}
+
+.gallery-header{
+    text-align: center; 
+}
+
+gallery-link{
+    background: url('images/empty_gallery.png') no-repeat center right; 
+    display: block; 
+    height: 200px; 
+    width: 200px;
+}
+
+.about-header {
+    text-align: center;
+    color: #fff000;
+}
+
+.about-text{
+    color: #fff000;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+

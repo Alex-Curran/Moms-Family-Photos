@@ -1,0 +1,24 @@
+﻿@model IEnumerable<PhotoStorage.ViewModels.GalleryListViewModel>
+
+@{
+    ViewBag.Title = "Galleries";
+}
+
+<h2 class="gallery-header">Galleries</h2>
+<hr />
+
+<p class="create-link">
+    @Html.ActionLink("New Gallery", "Create")
+</p>
+
+
+@foreach (var item in Model)
+{
+    <img src="@Url.Content(item.ImageUrl)" alt="Image" />
+    <br />
+    @Html.ActionLink(item.Name, "ViewGallery", new { id = item.Id })
+    
+    <br /><br />
+    
+}
+
