@@ -9,6 +9,7 @@ namespace PhotoStorage.ViewModels
 	public class GalleryListViewModel
 	{
         public string Name { get; set; }
+        public int Id { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
         public string ImageUrl { get; set; }
