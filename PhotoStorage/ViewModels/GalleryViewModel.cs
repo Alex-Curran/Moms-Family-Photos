@@ -22,6 +22,7 @@ namespace PhotoStorage.ViewModels
 
         [DisplayName("Photos")]
         public ICollection<Photo> Photos { get; set; }
+
     }
 
 }

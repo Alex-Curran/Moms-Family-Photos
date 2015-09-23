@@ -12,9 +12,10 @@
     {
         foreach (var photo in Model.Photos)
         {
-            <img src="@photo.FilePath" runat="server" /><br/>
-            @photo.Title<br/>
-            @photo.FilePath<br />
+            <img src="@photo.ThumbnailPath" />
+            <br />
+            @Html.ActionLink(photo.Title, "View", "Photo", new { id = photo.PhotoId })
+            <br />
            
         }
     }

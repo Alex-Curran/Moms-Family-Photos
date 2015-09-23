@@ -37,8 +37,8 @@ namespace PhotoStorage.Services
         {
             
             var uploadDirectory = "/Photos/" + photo.GalleryId +"/";
-            var imagePath = Path.Combine(HttpContext.Current.Server.MapPath(uploadDirectory), photoUpload.FileName);
-
+            //var imagePath = Path.Combine(HttpContext.Current.Server.MapPath(uploadDirectory), photoUpload.FileName);
+            var imagePath = uploadDirectory + photoUpload.FileName; 
             photoUpload.SaveAs(imagePath);
             photo.FilePath = imagePath;
         }

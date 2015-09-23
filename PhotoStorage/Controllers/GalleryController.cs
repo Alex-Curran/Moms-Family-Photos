@@ -62,7 +62,7 @@ namespace PhotoStorage.Controllers
                 return HttpNotFound();
             }
 
-           // gallery.Photos = unitOfWork.GalleryRepository.Ge;
+            gallery.Photos = repository.GetPhotos(gallery.Id);
 
             return View(gallery);
         }
