@@ -40,7 +40,9 @@ namespace PhotoStorage.Controllers
                     }
                 );
 
-                if (gallery.Photos != null)
+                gallery.Photos = repository.GetPhotos(gallery.Id);
+
+                if (gallery.Photos.Count > 0)
                 {
                     GalleryListViewModel galleryListViewModel = model.Last();
                     galleryListViewModel.ImageUrl = gallery.Photos.First().ThumbnailPath;

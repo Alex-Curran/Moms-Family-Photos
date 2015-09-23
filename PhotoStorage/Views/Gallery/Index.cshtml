@@ -14,7 +14,7 @@
 
 @foreach (var item in Model)
 {
-    <img src="@Url.Content(item.ImageUrl)" alt="Image" />
+    <img src="@Url.Content(item.ImageUrl)" alt="Image" height="100" width="100" />
     <br />
     @Html.ActionLink(item.Name, "ViewGallery", new { id = item.Id })
     
