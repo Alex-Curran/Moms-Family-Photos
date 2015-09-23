@@ -16,6 +16,20 @@ namespace PhotoStorage.DAL
             return db.Photos.Find(id);
         }
 
+        public string GetGalleryName(int id)
+        {
+            Photo photo = db.Photos.Find(id);
+            Gallery gallery = db.Galleries.Find(photo.GalleryId);
+          
+            return gallery.GalleryName;
+        }
+
+        public int GetGalleryId(int id)
+        {
+            Photo photo = db.Photos.Find(id);
+            return photo.GalleryId;
+        }
+
         public void Add(Photo newPhoto)
         {
             db.Photos.Add(newPhoto);
@@ -26,8 +40,17 @@ namespace PhotoStorage.DAL
             db.Photos.Remove(photoToDelete);
         }
 
-        public void Update(Photo photoToUpdate, int id)
+        public void Update(Photo photoToUpdate, int photoId)
         {
+            Photo originalPhoto = GetById(photoToUpdate.PhotoId);
+
+            photoToUpdate.FileName = originalPhoto.FileName;
+            photoToUpdate.FilePath = originalPhoto.FilePath;
+            photoToUpdate.GalleryId = originalPhoto.GalleryId;
+            photoToUpdate.PhotoId = originalPhoto.PhotoId;
+            photoToUpdate.ThumbnailName = originalPhoto.ThumbnailName;
+            photoToUpdate.ThumbnailPath = originalPhoto.ThumbnailPath;
+
             var originalEntity = db.Photos.Find(photoToUpdate.PhotoId);
             db.Entry(originalEntity).CurrentValues.SetValues(photoToUpdate);
         }

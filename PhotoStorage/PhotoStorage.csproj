@@ -167,6 +167,7 @@
     <Compile Include="DAL\PhotoStorageDB.cs" />
     <Compile Include="Services\PhotoUploader.cs" />
     <Compile Include="Services\GalleryService.cs" />
+    <Compile Include="ViewModels\CreatePhotoViewModel.cs" />
     <Compile Include="ViewModels\GalleryViewModel.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Views\Photo\UploadImage.cshtml" />
     <Content Include="Views\Photo\Create.cshtml" />
     <Content Include="Views\Photo\Delete.cshtml" />
+    <Content Include="Views\Photo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

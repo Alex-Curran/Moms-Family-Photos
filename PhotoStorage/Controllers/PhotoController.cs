@@ -6,6 +6,7 @@ using PhotoStorage.ViewModels;
 using System.Drawing;
 using System.Web;
 using PhotoStorage.DAL;
+using System.Data;
 
 namespace PhotoStorage.Controllers
 {
@@ -24,11 +25,25 @@ namespace PhotoStorage.Controllers
         }
 
         // GET: Photo
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
-        }
+            PhotoViewModel model = new PhotoViewModel();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest); 
+            }
 
+            Photo photo = repository.GetById((int)id);
+
+            model.Title = photo.Title;
+            model.Description = photo.Description;
+            model.PhotoPath = photo.FilePath;
+            model.GalleryName = repository.GetGalleryName((int)id);
+            model.PhotoId = photo.PhotoId;
+
+            return View(model);
+        }        
+      
         [HttpGet]
         public ActionResult Create(int? id)
         {
@@ -37,14 +52,14 @@ namespace PhotoStorage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = new PhotoViewModel {GalleryId = (int) id};
+            var model = new CreatePhotoViewModel {GalleryId = (int) id};
 
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PhotoViewModel model)
+        public ActionResult Create(CreatePhotoViewModel model)
         {
           
             if (model.PhotoUpload == null || model.PhotoUpload.ContentLength == 0)
@@ -56,7 +71,7 @@ namespace PhotoStorage.Controllers
             {
                 var photo = new Photo
                 {
-                    Title = model.Name,
+                    Title = model.Title,
                     Description = model.Description,
                     GalleryId = model.GalleryId,
                     FileName = model.PhotoUpload.FileName
@@ -84,11 +99,7 @@ namespace PhotoStorage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //var photo = db.Photos.Find(id);
-            //if (photo == null)
-            //{
-              //  return HttpNotFound();
-            //}
+           
             return View();
         }
 
@@ -97,9 +108,47 @@ namespace PhotoStorage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            int galleryId = repository.GetGalleryId(id);
+
             var photo = repository.GetById(id);
             repository.Delete(photo);
-            return RedirectToAction("Index");
+            repository.Save();
+            return RedirectToAction("Index", "Gallery", new { id = galleryId });
         }
+
+        public ActionResult Edit(int id)
+        {
+            var model = repository.GetById(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        // POST: Gallery/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Title,Description,PhotoId")] Photo photo)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    repository.Update(photo, photo.PhotoId);
+                    repository.Save();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException  dex)
+            {                   
+                ModelState.AddModelError(string.Empty,
+                    "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
+            }
+
+            return RedirectToAction("Index", "Photo", new { id = photo.PhotoId });
+        }
+
     }
 }

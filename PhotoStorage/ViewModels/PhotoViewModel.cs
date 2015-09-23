@@ -8,16 +8,19 @@ namespace PhotoStorage.ViewModels
 {
     public class PhotoViewModel
     {
-        [Required]
-        public string Name { get; set; }
+        [Display(Name="Title")]
+        public string Title { get; set; }
 
-        [Required]
-        public int GalleryId { get; set; }
+        [Display(Name="Gallery")]
+        public string GalleryName { get; set; }
 
+        [Display(Name="Description")]
         public string Description { get; set; }
-       
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PhotoUpload{ get; set; }
-       
+
+        [Required]
+        public int PhotoId { get; set; }
+
+        [Required]
+        public string PhotoPath { get; set; }
     }
 }

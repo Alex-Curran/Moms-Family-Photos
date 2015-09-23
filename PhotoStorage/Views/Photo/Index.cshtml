@@ -1,8 +1,20 @@
-﻿@model PhotoStorage.Models.Photo
+﻿@model PhotoStorage.ViewModels.PhotoViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>Index</h2>
+<h2>@Model.Title</h2>
+@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description) 
+<br />
+@Html.ActionLink("Delete", "Delete", new { id = Model.PhotoId })
+@Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId })
+<hr />
+<img src="@Model.PhotoPath"/>
+
+
+
+
+
+
 
