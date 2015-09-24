@@ -39,6 +39,9 @@ a {
 
 .gallery-header{
     text-align: center; 
+    color:#ffffff;
+    font-weight:bold;
+    font-family:'Calibri','Times New Roman'; 
 }
 
 gallery-link{

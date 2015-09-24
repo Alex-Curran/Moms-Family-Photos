@@ -2,23 +2,36 @@
 
 @{
     ViewBag.Title = "Galleries";
+    int counter = 0;
 }
 
-<h2 class="gallery-header">Galleries</h2>
+<div class = "container">
+    <a href="@Url.Action("Create", "Gallery")" class="links">
+        <img alt="Add New Gallery" src="@Url.Content("~/Content/images/plus_sign.png")">
+    </a>
+    <h1 class="gallery-header col-sm-8">Galleries</h1>
 <hr />
+</div>
 
-<p class="create-link">
-    @Html.ActionLink("New Gallery", "Create")
-</p>
-
-
-@foreach (var item in Model)
-{
-    <img src="@Url.Content(item.ImageUrl)" alt="Image" height="100" width="100" />
-    <br />
-    @Html.ActionLink(item.Name, "ViewGallery", new { id = item.Id })
-    
-    <br /><br />
-    
+<div class="container">
+    <div class="row">
+    @foreach (var item in Model)
+    {
+        if(counter != 0 && counter % 6 == 0)
+        {
+            @:</div>
+            @:<div class="row">
+            <br>
+        }
+        
+        <div class="col-sm-2">
+            <img src="@Url.Content(item.ImageUrl)" class="cl-sm-8 img-thumbnail " height="100" width="100" />
+            <br />
+            @Html.ActionLink(item.Name, "ViewGallery", new { id = item.Id })
+        </div>
+        
+        counter++;
 }
+    </div>
+</div>
 
