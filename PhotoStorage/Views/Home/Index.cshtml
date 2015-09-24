@@ -1,6 +1,15 @@
-﻿
+﻿@model PhotoStorage.ViewModels.HomePageViewModel
 @{
     ViewBag.Title = "Home Page";
 }
+
+@foreach (var photo in Model.Photos)
+{
+    <img src="@photo.ThumbnailPath" />
+    <br />
+    @Html.ActionLink(photo.Title, "Index", "Photo", new { id = photo.PhotoId }, null)
+    <br />
+}
+
 
 

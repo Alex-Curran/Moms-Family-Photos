@@ -16,6 +16,44 @@ namespace PhotoStorage.DAL
             return db.Photos.Find(id);
         }
 
+        public List<Photo> GetHomePagePhotos(int size)
+        {
+            List<Photo> homepagePhotos = new List<Photo>(size);
+            HashSet<int> randomIds = GetRandomIds(size);
+           
+            foreach (var randomId in randomIds)
+            {
+                homepagePhotos.Add(GetById(randomId));
+            }
+
+            return homepagePhotos;
+        }
+
+        private HashSet<int> GetRandomIds(int size )
+        {
+            HashSet<int> randomIds = new HashSet<int>();
+            Random random = new Random();
+
+            int PhotoCount = db.Photos.Count();
+
+            if (PhotoCount > size)
+            {
+                while (randomIds.Count < size)
+                {
+                    randomIds.Add(random.Next(1, PhotoCount));
+                }
+            }
+            else
+            {
+                while (randomIds.Count < PhotoCount / 2)
+                {
+                    randomIds.Add(random.Next(0, PhotoCount));
+                }
+            }
+
+            return randomIds;
+        }
+
         public string GetGalleryName(int id)
         {
             Photo photo = db.Photos.Find(id);
