@@ -61,7 +61,7 @@ namespace PhotoStorage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreatePhotoViewModel model)
         {
-          
+         
             if (model.PhotoUpload == null || model.PhotoUpload.ContentLength == 0)
             {
                 ModelState.AddModelError("PhotoUpload", "This field is required");
@@ -138,7 +138,8 @@ namespace PhotoStorage.Controllers
                     repository.Update(photo, photo.PhotoId);
                     repository.Save();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Photo", new { id = photo.PhotoId });
+
                 }
             }
             catch (DataException  dex)
