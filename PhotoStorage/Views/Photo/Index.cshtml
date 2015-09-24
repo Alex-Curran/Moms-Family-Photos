@@ -9,8 +9,13 @@
 <br />
 @Html.ActionLink("Delete", "Delete", new { id = Model.PhotoId })
 @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId })
+@Html.ActionLink("Back to Gallery", "ViewGallery", "Gallery", new { id = Model.GalleryId},null)
+@Html.ActionLink("Back", "Index", new { id = Model.PhotoId})
 <hr />
 <img src="@Model.PhotoPath"/>
+
+
+
 
 
 

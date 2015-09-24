@@ -14,6 +14,8 @@ namespace PhotoStorage.ViewModels
         [Display(Name="Gallery")]
         public string GalleryName { get; set; }
 
+        public int GalleryId { get; set; }
+
         [Display(Name="Description")]
         public string Description { get; set; }
 

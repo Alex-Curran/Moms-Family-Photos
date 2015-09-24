@@ -39,6 +39,7 @@ namespace PhotoStorage.Controllers
             model.Description = photo.Description;
             model.PhotoPath = photo.FilePath;
             model.GalleryName = repository.GetGalleryName((int)id);
+            model.GalleryId = photo.GalleryId;
             model.PhotoId = photo.PhotoId;
 
             return View(model);
@@ -95,12 +96,18 @@ namespace PhotoStorage.Controllers
         // GET: Restaurant/Delete/5
         public ActionResult Delete(int? id)
         {
+            DeletePhotoViewModel model = new DeletePhotoViewModel();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
-            return View();
+
+            Photo photo = repository.GetById((int)id);
+            model.GalleryId = photo.GalleryId;
+            model.Title = photo.Title;
+            model.Description = photo.Description;
+
+            return View(model);
         }
 
         // POST: Restaurant/Delete/5
@@ -113,7 +120,7 @@ namespace PhotoStorage.Controllers
             var photo = repository.GetById(id);
             repository.Delete(photo);
             repository.Save();
-            return RedirectToAction("Index", "Gallery", new { id = galleryId });
+            return RedirectToAction("ViewGallery", "Gallery", new { id = galleryId });
         }
 
         public ActionResult Edit(int id)
