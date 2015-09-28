@@ -12,6 +12,10 @@ namespace PhotoStorage.ViewModels
         [Required]
         public string GalleryName { get; set; }
 
+        [Required]
+        [Editable(false)]
+        public int GalleryId { get; set; }
+
         [DisplayName("Description")]
         public string Description { get; set; }
 

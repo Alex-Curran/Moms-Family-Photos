@@ -4,9 +4,12 @@
     ViewBag.Title = Model.Title;
 }
 
-<h2>@Model.Title</h2>
-@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description) 
+<div class="Title">
+    <h2 >@Model.Title</h2>
+    @Html.DisplayFor(model => model.Description) 
+</div>
 <br />
+
 @Html.ActionLink("Delete", "Delete", new { id = Model.PhotoId })
 @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId })
 @Html.ActionLink("Back to Gallery", "ViewGallery", "Gallery", new { id = Model.GalleryId},null)

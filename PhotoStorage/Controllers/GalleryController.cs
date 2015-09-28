@@ -58,6 +58,7 @@ namespace PhotoStorage.Controllers
         public ActionResult ViewGallery(int id)
         {
             Gallery gallery = repository.GetById(id);
+            GalleryViewModel model = new GalleryViewModel();
 
             if (gallery == null)
             {
@@ -66,7 +67,13 @@ namespace PhotoStorage.Controllers
 
             gallery.Photos = repository.GetPhotos(gallery.Id);
 
-            return View(gallery);
+            model.Photos = gallery.Photos;
+            model.GalleryId = gallery.Id;
+            model.GalleryName = gallery.GalleryName;
+            model.Description = gallery.Description;
+            model.DateCreated = gallery.DateCreated;
+            
+            return View(model);
         }
 
         // GET: Galleries/Create
@@ -137,12 +144,19 @@ namespace PhotoStorage.Controllers
         // GET: Gallery/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = repository.GetById(id);
+            var gallery = repository.GetById(id);
+            DeleteGalleryViewModel model = new DeleteGalleryViewModel();
 
-            if (model == null)
+            if (gallery == null)
             {
                 return HttpNotFound();
             }
+            var Photos = repository.GetPhotos(id);
+           
+            model.GalleryName = gallery.GalleryName;
+            model.GalleryId = gallery.Id;
+            model.Description = gallery.Description;
+            
             return View(model);
         }
 

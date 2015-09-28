@@ -1,15 +1,38 @@
 ﻿@model PhotoStorage.ViewModels.HomePageViewModel
 @{
     ViewBag.Title = "Home Page";
+    int counter = 0;
 }
 
-@foreach (var photo in Model.Photos)
-{
-    <img src="@photo.ThumbnailPath" />
-    <br />
-    @Html.ActionLink(photo.Title, "Index", "Photo", new { id = photo.PhotoId }, null)
-    <br />
-}
+<div class="container">
+    <h1 class="gallery-header col-sm-12">Featured Photos!</h1>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+    @foreach (var item in Model.Photos)
+    {
+        if(counter != 0 && counter % 6 == 0)
+        {
+            @:</div>
+            @:<div class="row">
+              <br>
+        }
+
+        <div class="col-sm-2">
+            <br />
+            <a href="@Url.Action("Index", "Photo",new{id = item.PhotoId})" class="links">
+                <img alt="item.Title" src="@Url.Content(item.ThumbnailPath)">
+            </a>
+
+        </div>
+
+        counter++;
+    }
+        </div>
+    </div>
+
+       
 
 
 

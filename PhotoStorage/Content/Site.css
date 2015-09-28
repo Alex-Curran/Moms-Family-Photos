@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #800080;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,23 +29,30 @@
     color:#800080;
 }
 
-.well-lg{
-    background-color:#800080;
-    height: 100vh;
-}
-
 a {
     color: #ffffff;
 }
 
-.gallery-header{
-    text-align: center; 
-    color:#ffffff;
+.Title{
+    color:#fff000;
     font-weight:bold;
     font-family:'Calibri','Times New Roman'; 
 }
 
-gallery-link{
+.Centered-Title{
+    text-align:center;
+}
+
+.Info{
+    color:#ffffff;
+    font-family:'Calibri','Times New Roman';
+}
+
+.yellow-text{
+    color:#fff000;
+}
+
+.gallery-link{
     background: url('images/empty_gallery.png') no-repeat center right; 
     display: block; 
     height: 200px; 

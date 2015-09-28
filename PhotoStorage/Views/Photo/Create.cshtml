@@ -4,19 +4,19 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2 class="yellow-text">Create</h2>
 
 <form action="" method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <div class="col-md-10">
+    <div class="col-md-10 yellow-text">
         @Html.LabelFor(model=>model.Title)
         @Html.EditorFor(model => model.Title)
         @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-10 yellow-text">
         @Html.LabelFor(m => m.Description)
         @Html.EditorFor(m => m.Description)
         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })

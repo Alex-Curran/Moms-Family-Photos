@@ -1,30 +1,56 @@
-﻿@model PhotoStorage.Models.Gallery
+﻿@model PhotoStorage.ViewModels.GalleryViewModel
 
 @{
     ViewBag.Title = @Model.GalleryName;
+    int counter = 0;
 }
-<h2>@Html.DisplayFor(model => model.GalleryName)</h2>
 
-@Html.ActionLink("Upload Image", "Create", "Photo", new { id = Model.Id },null)
-<hr/>
-
-<div class=" container">
-    @{
-        if (Model.Photos != null)
-        {
-            foreach (var photo in Model.Photos)
-            {
-                <img src="@photo.ThumbnailPath" />
-                <br />
-                @Html.ActionLink(photo.Title, "Index", "Photo", new { id = photo.PhotoId },null)
-                <br />
-
-            }
-        }
-    }
+<div class="container">
+    <div class="row Title">
+        <h2 class="col-sm-9">@Html.DisplayFor(model => model.GalleryName)</h2>
+        <a href="@Url.Action("Create", "Photo", new { id = Model.GalleryId })" class="col-sm-1">
+            <img alt="Add Photo" src="@Url.Content("~/Content/images/Add.png")">
+        </a>
+        <a href="@Url.Action("Delete", "Gallery", new { id = Model.GalleryId })" class="col-sm-1">
+            <img alt="Delete Gallery" src="@Url.Content("~/Content/images/Delete.png")">
+        </a>
+        <a href="@Url.Action("Edit", "Gallery", new { id = Model.GalleryId })" class="col-sm-1">
+            <img alt="Delete Gallery" src="@Url.Content("~/Content/images/Edit.png")">
+        </a>
+    </div>
+    <div class="row Info">
+        <h4 class="col-sm-3">@Model.Description</h4>
+        <br />
+    </div>
 </div>
 
+<hr/>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Photos)
+        {
+            if (counter != 0 && counter % 6 == 0)
+            {
+            @:</div>
+            @:<div class="row">
+                <br>
+            }
+
+            <div class="col-sm-2">
+                <a href="@Url.Action("Index", "Photo", new{id = item.PhotoId})" class="cl-sm-8 img-thumbnail">
+                    <img alt="item.Title" src="@Url.Content(item.ThumbnailPath)">
+                </a>
+                <br />
+                @Html.ActionLink(item.Title, "Index","Photo", new { id = item.PhotoId },null)
+            </div>
+
+            counter++;
+        }
+    </div>
+</div>
+
+<br />
 <p>
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
     @Html.ActionLink("Back to List", "Index")
 </p>

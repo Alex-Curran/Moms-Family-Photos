@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="yellow-text">Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal yellow-text">
         <h4>Gallery</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

@@ -5,13 +5,14 @@
     int counter = 0;
 }
 
-<div class = "container">
-    <a href="@Url.Action("Create", "Gallery")" class="links">
-        <img alt="Add New Gallery" src="@Url.Content("~/Content/images/plus_sign.png")">
+<div class = "container Title Centered-Title" >
+    <br />
+    <h1 class="col-sm-11">Galleries</h1>
+    <a href="@Url.Action("Create", "Gallery")" class="col-sm-1">
+        <img alt="Add New Gallery" src="@Url.Content("~/Content/images/Add.png")">
     </a>
-    <h1 class="gallery-header col-sm-8">Galleries</h1>
-<hr />
 </div>
+<hr />
 
 <div class="container">
     <div class="row">
@@ -25,7 +26,9 @@
         }
         
         <div class="col-sm-2">
-            <img src="@Url.Content(item.ImageUrl)" class="cl-sm-8 img-thumbnail " height="100" width="100" />
+            <a href="@Url.Action("ViewGallery", "Gallery",new{id = item.Id})" class="cl-sm-8 img-thumbnail">
+                <img alt="item.Title" src="@Url.Content(item.ImageUrl)">
+            </a>
             <br />
             @Html.ActionLink(item.Name, "ViewGallery", new { id = item.Id })
         </div>

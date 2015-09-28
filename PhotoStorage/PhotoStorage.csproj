@@ -168,6 +168,7 @@
     <Compile Include="Services\PhotoUploader.cs" />
     <Compile Include="Services\GalleryService.cs" />
     <Compile Include="ViewModels\CreatePhotoViewModel.cs" />
+    <Compile Include="ViewModels\DeleteGalleryViewModel.cs" />
     <Compile Include="ViewModels\DeletePhotoViewModel.cs" />
     <Compile Include="ViewModels\GalleryViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
