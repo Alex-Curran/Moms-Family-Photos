@@ -70,19 +70,18 @@ namespace PhotoStorage.Controllers
            
             if (ModelState.IsValid)
             {
+                PhotoUploader photoUploader = new PhotoUploader();
                 var photo = new Photo
                 {
                     Title = model.Title,
                     Description = model.Description,
                     GalleryId = model.GalleryId,
                     FileName = model.PhotoUpload.FileName
-                    
                 };
 
                 if (model.PhotoUpload != null && model.PhotoUpload.ContentLength > 0)
                 {
-                    PhotoUploader.SavePhotoToFileSystem(photo, model.PhotoUpload);
-                    photo.ThumbnailPath = PhotoUploader.GenerateThumbnail(photo.FilePath);
+                    photo = photoUploader.SavePhotoToFileSystem(photo, model.PhotoUpload);
                     repository.Add(photo);
                     repository.Save();
                 }

@@ -58,31 +58,21 @@ namespace PhotoStorage.DAL
             
         }
 
+        public void AddPhotos(IEnumerable<Photo> photos)
+        {
+            foreach (var photo in photos)
+            {
+                db.Photos.Add(photo);
+            }
+
+            db.SaveChanges();
+        }
+
         public ICollection<Photo> GetPhotos(int galleryId)
         {
             return (from photo in db.Photos
                     where photo.GalleryId == galleryId
                     select photo).ToList();
-        }
-
-        public void DeleteDirectory(string path)
-        {
-            string[] files = Directory.GetFiles(path);
-            string[] dirs = Directory.GetDirectories(path);
-
-            foreach (string file in files)
-            {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
-
-            foreach (string dir in dirs)
-            {
-                DeleteDirectory(dir);
-            }
-
-            Directory.Delete(path, false);
-
         }
 
         private bool disposed;
@@ -105,12 +95,6 @@ namespace PhotoStorage.DAL
             GC.SuppressFinalize(this);
         }
 
-        public void CreateDirectoryStructure(string path)
-        {
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-        }
+        
     }
 }

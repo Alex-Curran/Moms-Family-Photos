@@ -7,7 +7,7 @@
 <h2 class="Title">Create New Gallery</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -26,13 +26,14 @@
                 @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
             </div>
-               
-        </div>
 
-       <div class="form-group">
+            <div>
+                @Html.TextBoxFor(m => m.PhotoUpload, new { type = "file", multiple="true"})
+            </div>
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
+                   
         </div>
     </div>
 }
