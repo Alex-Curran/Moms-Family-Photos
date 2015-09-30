@@ -29,29 +29,44 @@ namespace PhotoStorage.DAL
             return homepagePhotos;
         }
 
-        private HashSet<int> GetRandomIds(int size )
+        private HashSet<int> GetRandomIds(int size)
         {
             HashSet<int> randomIds = new HashSet<int>();
+            List<int> currentIds = GetCurrentIds();
             Random random = new Random();
 
             int PhotoCount = db.Photos.Count();
-
             if (PhotoCount > size)
             {
                 while (randomIds.Count < size)
                 {
-                    randomIds.Add(random.Next(1, PhotoCount));
+                    randomIds.Add(currentIds.ElementAt(random.Next(0,currentIds.Count())));
                 }
             }
             else
             {
                 while (randomIds.Count < PhotoCount / 2)
                 {
-                    randomIds.Add(random.Next(0, PhotoCount));
+                    randomIds.Add(currentIds.ElementAt(random.Next(0, currentIds.Count())));
                 }
             }
 
             return randomIds;
+        }
+
+        private List<int> GetCurrentIds()
+        {
+            List<int>currentIds = new List<int>();
+            int GreatestId= db.Photos.Max(p => p.PhotoId);
+
+            for (int i = 0; i < GreatestId; i++){
+                if (db.Photos.Find(i) != null)
+                {
+                    currentIds.Add(i);
+                }
+            }
+
+            return currentIds; 
         }
 
         public string GetGalleryName(int id)

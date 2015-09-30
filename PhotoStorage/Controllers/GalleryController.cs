@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using PhotoStorage.DAL;
 using PhotoStorage.Models;
 using PhotoStorage.ViewModels;
+using PhotoStorage.Services;
 
 namespace PhotoStorage.Controllers
 {
@@ -85,17 +86,24 @@ namespace PhotoStorage.Controllers
         // POST: Galleries/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GalleryName,Description")] Gallery gallery)
+        public ActionResult Create(CreateGalleryViewModel galleryViewModel)
         {
-            gallery.DateCreated = System.DateTime.Now; 
-
             if (ModelState.IsValid)
             {
-               repository.Add(gallery);
-               repository.Save();
-               gallery.Path = Server.MapPath("/Photos/" + gallery.Id);
-               repository.Save();
-               repository.CreateDirectoryStructure(gallery.Path);
+                GalleryService galleryService = new GalleryService();
+                PhotoUploader photoUploader = new PhotoUploader();
+
+                Gallery gallery = galleryService.CreateGallery(galleryViewModel.GalleryName, galleryViewModel.Description);
+                repository.Add(gallery);
+                repository.Save();
+
+                gallery.Path = Server.MapPath("/Photos/" + gallery.Id);
+                galleryService.CreateDirectoryStructure(gallery.Path);
+
+                List<Photo> photos = photoUploader.UploadMultiplePhotos(galleryViewModel.PhotoUpload, gallery.Id);
+
+                repository.AddPhotos(photos);
+                repository.Save();
 
                 return RedirectToAction("ViewGallery", "Gallery", new {id = gallery.Id});
             }
@@ -166,12 +174,12 @@ namespace PhotoStorage.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Gallery gallery = repository.GetById(id);
+            GalleryService galleryService = new GalleryService();
+
             repository.Delete(gallery);
+            galleryService.DeleteDirectory(gallery.Path);
             repository.Save();
             
-            repository.GetPhotos(gallery.Id);
-            repository.DeleteDirectory(gallery.Path);
-
             return RedirectToAction("Index");
         }
   

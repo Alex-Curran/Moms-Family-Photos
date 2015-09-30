@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace PhotoStorage.ViewModels
 {
@@ -15,9 +17,7 @@ namespace PhotoStorage.ViewModels
         [StringLength(1024, ErrorMessage = "Maximum length is 1024 characters")]
         public string Description{ get; set; }  
 
-        [DisplayName("Date Created")]
-        [Editable(false)]
-        [Required]
-        public DateTime DateCreated{ get; set; }
+        [DataType(DataType.Upload)]
+        public IEnumerable<HttpPostedFileBase> PhotoUpload { get; set; }
     }
 }

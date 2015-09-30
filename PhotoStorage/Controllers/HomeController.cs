@@ -26,7 +26,7 @@ namespace PhotoStorage.Controllers
         public ActionResult Index()
         {
             HomePageViewModel model = new HomePageViewModel();
-            int size = 20;
+            int size = 15;
 
             List<Photo> HomepagePhotos = repository.GetHomePagePhotos(size);
             model.Photos = HomepagePhotos;

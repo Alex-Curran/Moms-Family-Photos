@@ -167,14 +167,14 @@
     <Compile Include="DAL\PhotoStorageDB.cs" />
     <Compile Include="Services\PhotoUploader.cs" />
     <Compile Include="Services\GalleryService.cs" />
-    <Compile Include="ViewModels\CreatePhotoViewModel.cs" />
-    <Compile Include="ViewModels\DeleteGalleryViewModel.cs" />
-    <Compile Include="ViewModels\DeletePhotoViewModel.cs" />
-    <Compile Include="ViewModels\GalleryViewModel.cs" />
-    <Compile Include="ViewModels\HomePageViewModel.cs" />
-    <Compile Include="ViewModels\PhotoViewModel.cs" />
+    <Compile Include="ViewModels\PhotoViewModels\CreatePhotoViewModel.cs" />
+    <Compile Include="ViewModels\GalleryViewModels\DeleteGalleryViewModel.cs" />
+    <Compile Include="ViewModels\PhotoViewModels\DeletePhotoViewModel.cs" />
+    <Compile Include="ViewModels\GalleryViewModels\GalleryViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\PhotoViewModels\PhotoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CreateGalleryViewModel.cs" />
+    <Compile Include="ViewModels\GalleryViewModels\CreateGalleryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\About.txt" />
@@ -199,7 +199,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Compile Include="ViewModels\GalleryListViewModel.cs" />
+    <Compile Include="ViewModels\GalleryViewModels\GalleryListViewModel.cs" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
