@@ -10,10 +10,17 @@
 </div>
 <br />
 
-@Html.ActionLink("Delete", "Delete", new { id = Model.PhotoId })
-@Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId })
-@Html.ActionLink("Back to Gallery", "ViewGallery", "Gallery", new { id = Model.GalleryId},null)
-@Html.ActionLink("Back", "Index", new { id = Model.PhotoId})
+<div class="container">
+    <a href="@Url.Action("Delete", "Photo", new { id = Model.PhotoId })">
+        <img alt="Delete" src="@Url.Content("~/Content/images/Delete.png")">
+    </a>
+    <a href="@Url.Action("Edit", "Photo", new { id = Model.PhotoId })">
+        <img alt="Edit" src="@Url.Content("~/Content/images/Edit.png")">
+    </a>
+    <a href="@Url.Action("ViewGallery", "Gallery", new { id = Model.GalleryId })">
+        <img alt="Back" src="@Url.Content("~/Content/images/Back.png")" />
+    </a>
+</div>
 <hr />
 <img src="@Model.PhotoPath"/>
 
