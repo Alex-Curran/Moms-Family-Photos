@@ -27,21 +27,16 @@ namespace PhotoStorage.Controllers
         // GET: Photo
         public ActionResult Index(int? id)
         {
-            PhotoViewModel model = new PhotoViewModel();
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest); 
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Photo photo = repository.GetById((int)id);
+            string galleryName = repository.GetGalleryName((int)id);
 
-            model.Title = photo.Title;
-            model.Description = photo.Description;
-            model.PhotoPath = photo.FilePath;
-            model.GalleryName = repository.GetGalleryName((int)id);
-            model.GalleryId = photo.GalleryId;
-            model.PhotoId = photo.PhotoId;
-
+            PhotoViewModel model = new PhotoViewModel(photo, galleryName);
+                         
             return View(model);
         }        
       
@@ -62,10 +57,14 @@ namespace PhotoStorage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreatePhotoViewModel model)
         {
-         
             if (model.PhotoUpload == null || model.PhotoUpload.ContentLength == 0)
             {
                 ModelState.AddModelError("PhotoUpload", "This field is required");
+            }
+
+            if (model.PhotoUpload.ContentLength >= 5000000)
+            {
+                ModelState.AddModelError("PhotoUpload", "Photo is too big! Please resize to under 5mb or contact Alex");
             }
            
             if (ModelState.IsValid)
@@ -76,7 +75,9 @@ namespace PhotoStorage.Controllers
                     Title = model.Title,
                     Description = model.Description,
                     GalleryId = model.GalleryId,
-                    FileName = model.PhotoUpload.FileName
+                    FileName = model.PhotoUpload.FileName,
+                    Width = Image.FromStream(model.PhotoUpload.InputStream, false, false).Width,
+                    Height = Image.FromStream(model.PhotoUpload.InputStream, false, false).Height
                 };
 
                 if (model.PhotoUpload != null && model.PhotoUpload.ContentLength > 0)

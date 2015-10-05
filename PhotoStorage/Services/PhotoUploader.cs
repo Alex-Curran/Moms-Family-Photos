@@ -23,9 +23,13 @@ namespace PhotoStorage.Services
             List<Photo> PhotosAdded = new List<Photo>();
             foreach (var upload in Uploads)
             {
-                Photo photo = new Photo();
-                photo.Title = Path.GetFileNameWithoutExtension(upload.FileName);
-                photo.GalleryId = galleryId;
+                Photo photo = new Photo()
+                {
+                    Title = Path.GetFileNameWithoutExtension(upload.FileName),
+                    GalleryId = galleryId,
+                    Height = Image.FromStream(upload.InputStream, false, false).Height,
+                    Width = Image.FromStream(upload.InputStream, false, false).Width
+                };
                 photo = SavePhotoToFileSystem(photo, upload);
                 PhotosAdded.Add(photo);
             }
