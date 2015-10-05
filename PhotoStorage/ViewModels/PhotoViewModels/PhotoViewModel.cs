@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoStorage.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,17 @@ namespace PhotoStorage.ViewModels
 {
     public class PhotoViewModel
     {
+        public PhotoViewModel(Photo photo, string galleryName)
+        {
+            Title = photo.Title;
+            Description = photo.Description;
+            PhotoPath = photo.FilePath;
+            GalleryName = galleryName;
+            GalleryId = photo.GalleryId;
+            PhotoId = photo.PhotoId;
+            Height = photo.Height;
+            Width = photo.Width;
+        }
         [Display(Name="Title")]
         public string Title { get; set; }
 
@@ -24,5 +36,11 @@ namespace PhotoStorage.ViewModels
 
         [Required]
         public string PhotoPath { get; set; }
+
+        [Required]
+        public int Width { get; set; }
+
+        [Required]
+        public int Height { get; set; }
     }
 }

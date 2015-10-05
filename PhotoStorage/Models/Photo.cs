@@ -33,5 +33,13 @@ namespace PhotoStorage.Models
         [Editable(false)]
         public string FileName { get; set; }
 
+        [ScaffoldColumn(false)]
+        [Editable(false)]
+        public int Width { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Editable(false)]
+        public int Height { get; set; }
+
     }
 }

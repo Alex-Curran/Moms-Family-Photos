@@ -8,19 +8,20 @@
 <div class="container">
     <div class="row Title">
         <h2 class="col-sm-9">@Html.DisplayFor(model => model.GalleryName)</h2>
-        <a href="@Url.Action("Create", "Photo", new { id = Model.GalleryId })" class="col-sm-1">
-            <img alt="Add Photo" src="@Url.Content("~/Content/images/Add.png")">
-        </a>
-        <a href="@Url.Action("Delete", "Gallery", new { id = Model.GalleryId })" class="col-sm-1">
-            <img alt="Delete Gallery" src="@Url.Content("~/Content/images/Delete.png")">
-        </a>
-        <a href="@Url.Action("Edit", "Gallery", new { id = Model.GalleryId })" class="col-sm-1">
-            <img alt="Delete Gallery" src="@Url.Content("~/Content/images/Edit.png")">
-        </a>
     </div>
     <div class="row Info">
         <h4 class="col-sm-3">@Model.Description</h4>
-        <br />
+    </div>
+    <div class="col-sm-3">
+        <a href="@Url.Action("Create", "Photo", new { id = Model.GalleryId })">
+            <img alt="Add Photo" src="@Url.Content("~/Content/images/Add.png")">
+        </a>
+        <a href="@Url.Action("Delete", "Gallery", new { id = Model.GalleryId })">
+            <img alt="Delete Gallery" src="@Url.Content("~/Content/images/Delete.png")">
+        </a>
+        <a href="@Url.Action("Edit", "Gallery", new { id = Model.GalleryId })">
+            <img alt="Delete Gallery" src="@Url.Content("~/Content/images/Edit.png")">
+        </a>
     </div>
 </div>
 
